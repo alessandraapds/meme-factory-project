@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Memes from "./Memes";
+import UserFiles from "./UserFiles";
 
 const Input = () => {
   // Text on Top
@@ -39,7 +40,7 @@ const Input = () => {
 
       {/* text on the top */}
       <form>
-        <label for="top phrase">Phrase on the top</label>
+        <label for="top phrase">Top text</label>
         <input
           type="text"
           name="Top phrase"
@@ -47,12 +48,12 @@ const Input = () => {
           value={newTextTop}
           onChange={(e) => setNewTextTop(e.target.value)}
         />
-        <button onClick={insertTopTextTop}>Publish!</button>
+        <button onClick={insertTopTextTop}>Post!</button>
       </form>
 
       {/* text on the bottom */}
       <form>
-        <label for="top phrase">Phrase on the bottom</label>
+        <label for="top phrase">Bottom text</label>
         <input
           type="text"
           name="Bottom phrase"
@@ -60,8 +61,15 @@ const Input = () => {
           value={newTextBottom}
           onChange={(e) => setNewTextBottom(e.target.value)}
         />
-        <button onClick={insertTopTextBottom}>Publish!</button>
+        <button onClick={insertTopTextBottom}>Post!</button>
       </form>
+      <br />
+      <UserFiles
+        topText={topText}
+        setTopText={setTopText}
+        bottomText={bottomText}
+        setBottomText={setBottomText}
+      />
     </div>
   );
 };

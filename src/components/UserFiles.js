@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 
-const UserFiles = () => {
+const UserFiles = ({ topText, setTopText, bottomText, setBottomText }) => {
   const [newFile, setNewFile] = useState(null);
   const [userUploadedFiles, setUserUploadedFiles] = useState([]);
 
-  console.log(newFile, "test");
-
   const addUserFile = (e) => {
     e.preventDefault();
-    const file = {
-      id: Math.floor(Math.random() * 1000),
-      file_url: URL.createObjectURL(newFile),
-    };
+    const file = URL.createObjectURL(newFile);
 
     setUserUploadedFiles((oldFiles) => [...oldFiles, file]);
     setNewFile(null);
@@ -19,19 +14,21 @@ const UserFiles = () => {
 
   return (
     <div>
+      <h4>Do you want to use your own images?</h4>
+      <p>Choose an image from your computer and start playing!</p>
       <div>
         <input
           type="file"
           id="input"
-          value={newFile}
-          onChange={(e) => setNewFile(e.target.value)}
+          onChange={(e) => setNewFile(e.target.files[0])}
         />
         <button onClick={addUserFile}>Upload</button>
       </div>
-      <div>
-        {userUploadedFiles.map((file) => (
-          <img key={file.id} src={file.file_url} />
-        ))}
+      <br />
+      <div class="container">
+        <div class="top-text">{topText}</div>
+        <img src={userUploadedFiles} />
+        <div class="bottom-text">{bottomText}</div>
       </div>
     </div>
   );
